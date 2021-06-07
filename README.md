@@ -1,3 +1,3 @@
 # Spring-JavaScript
-Spring+jsでアプリケーションを作成する。SpringフレームワークでRestAPIを作成し、 jsでデータを表示させる想定。
-
+Java(SpringBoot)でいろいろ開発する用。
+FWとJava自体の理解を深めることとシステムを構築することに慣れるのが目的。（ついでにjavascriptとSQLも)
