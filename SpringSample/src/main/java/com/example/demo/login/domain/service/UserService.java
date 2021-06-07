@@ -31,6 +31,11 @@ public class UserService {
 		return dao.count();
 	}
 
+	public User selectOne(String userId) {
+		return dao.selectOne(userId);
+
+	}
+
 	public List<User> selectMany() {
 		return dao.selectMany();
 	}
