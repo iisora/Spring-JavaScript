@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.util.matcher.RequestMatcher;
 
 @EnableWebSecurity
 @Configuration
@@ -48,8 +49,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		// webjars,css,login,signup以外は直リンクアクセス禁止
 		// method chain
 		http.authorizeRequests().antMatchers("/webjars/**").permitAll().antMatchers("/css/**").permitAll()
-				.antMatchers("/login").permitAll().antMatchers("/signup").permitAll().antMatchers("/admin")
-				.hasAuthority("ROLE_ADMIN").anyRequest().authenticated();
+				.antMatchers("/login").permitAll().antMatchers("/signup").permitAll().antMatchers("/rest/**")
+				.permitAll().antMatchers("/admin").hasAuthority("ROLE_ADMIN").anyRequest().authenticated();
 
 		http.formLogin().loginProcessingUrl("/login").loginPage("/login").failureUrl("/login")
 				.usernameParameter("userId").passwordParameter("password").defaultSuccessUrl("/home", true);
@@ -57,8 +58,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutUrl("/logout")
 				.logoutSuccessUrl("/login");
 
-		// CSRF対策を向こうに設定(一時的に)
-//		http.csrf().disable();
+		// CSRFを向こうにするURLを設定
+		RequestMatcher csrfMatcher = new RestMatcher("/rest/**");
+
+		// RESTのみCSRF対策を無効に設定
+		http.csrf().requireCsrfProtectionMatcher(csrfMatcher);
 	}
 
 	@Override
