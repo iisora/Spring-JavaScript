@@ -28,7 +28,7 @@ layout:decorate="~{layout/layout}">
 							 該当データがありません
 							</div>
 						
-							<table th:if="${employee.size() > 0}" class="table table-borderd">
+							<table th:if="${employees.size() > 0}" class="table table-borderd">
 								<thead>
 									<tr>
 										<th>#</th>
@@ -38,7 +38,7 @@ layout:decorate="~{layout/layout}">
 									</tr>
 								</thead>
 								<tbody>
-									<tr th:each="employee : ${employee}"
+									<tr th:each="employee : ${employees}"
 										th:object="${employee}">
 										<td th:text="*{id}"></td>
 										<td th:text="*{name}"></td>

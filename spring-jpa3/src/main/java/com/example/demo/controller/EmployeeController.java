@@ -53,4 +53,11 @@ public class EmployeeController {
 		return "redirect:/";
 	}
 
+	@GetMapping("find")
+	public String findSample(Model model) {
+		// interfaceを定義するだけで、名前からクエリが自動生成されるため、findByNameLikeが使える
+		model.addAttribute("employees", repository.findByNameLike("%中%"));
+		return "index";
+	}
+
 }

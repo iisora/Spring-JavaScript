@@ -20,7 +20,16 @@ public class DataLoader implements CommandLineRunner {
 		department.setName("営業");
 		repository.save(department);
 
+		department = new Department();
 		department.setName("開発");
+		repository.save(department);
+
+		department = new Department();
+		department.setName("事務");
+		repository.save(department);
+
+		department = new Department();
+		department.setName("人事");
 		repository.save(department);
 	}
 }
