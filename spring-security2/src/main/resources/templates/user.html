@@ -12,21 +12,19 @@ layout:decorate="~{layout/layout}">
 	</div>
 
 	<!-- コンテンツの表示 -->
-	<main layout:fragment="content" class="offcanvas-outside bg-light">
+	<main layout:fragment="content" id="content" class="offcanvas-outside bg-light menu-hidden-escape">
 	<div class="container-fluid">
 		<!-- トグルボタン -->
 		<div th:replace="~{fragments/sidebar :: toggler}">
 		</div>
-		
 		<div class="row">
 			<div class="col">
-			
 				<div class="card shadow">
 					<div class="card-header">
 						<h6 class="text-navy my-2">
 							ログイン情報
 						</h6>
-					</div>
+					</div>			
 					<div class="card-body table-responsive">
 						<table class="table table-bordered">
 							<thead>
