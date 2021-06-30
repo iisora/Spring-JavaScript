@@ -1,4 +1,4 @@
-package dev.itboot.rest.controller.v1;
+package com.dev.personal.controller.rest;
 
 import java.util.List;
 
@@ -12,15 +12,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import dev.itboot.rest.model.Task;
-import dev.itboot.rest.repository.TaskRepository;
+import com.dev.personal.model.Task;
+import com.dev.personal.repository.TaskRepository;
+
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 
 @RequestMapping("/api/v1/tasks")
 @RequiredArgsConstructor
 @RestController
-public class TaskController {
+public class TaskRestController {
 
 	private final TaskRepository repository;
 

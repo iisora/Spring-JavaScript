@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{layout/layout}">
+<head>
+	<meta charset="UTF-8" th:remove="tag">
+</head>
+<body>
+<div layout:fragment="content" class="container-fluid">
+	<h4>ユーザ登録画面</h4>
+	
+	<form th:action="@{/process}" th:object="${colleague}" method="post" novalidate>
+		<input type="hidden" th:field="*{id}">
+		
+		<div class="mb-3">
+			<label for="userName">名前：</label>
+			<!-- th:errorclassはエラーがある場合にclass属性にstyleを追加する  -->
+			<!-- エラーのチェックはth:fieldまたはname属性から取得するため、セットで使う必要がある -->
+			<input type="text" class="form-control" th:errorclass="is-invalid" th:field="*{userName}">
+			<!-- th:errorはエラーがある場合に、エラーメッセージを表示する -->
+			<div class="invalid-feedback" th:errors="*{userName}"></div>
+		</div>
+		
+		<div class="mb-3">
+			<label for="email">E-Mail:</label>
+			<input type="text" class="form-control" th:errorclass="is-invalid" th:field="*{email}">
+			<div class="invalid-feedback" th:errors="*{email}"></div>
+		</div>
+		
+		<button class="btn btn-outline-primary px-5">
+			<i class="bi bi-pencil-fill"></i>
+			保存
+		</button>
+		
+		<a th:href="@{/list}" class="btn btn-outline-danger">
+			<i class="bi bi-arrow-left-square"></i>
+			戻る
+		</a>
+	</form>
+	
+</div>
+
+</body>
+</html>

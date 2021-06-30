@@ -1,4 +1,4 @@
-package dev.itboot.rest.model;
+package com.dev.personal.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
