@@ -1,4 +1,4 @@
-package dev.itboot.rest;
+package com.dev.personal;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
