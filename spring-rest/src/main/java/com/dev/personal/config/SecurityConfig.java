@@ -38,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-				// 「/login」と「/register」をアクセス可能にします
+				// 「/login」と「/register」をアクセス可能にします。(registerをアクセス可能にしないと登録できない。)
 				.antMatchers("/login", "/register").permitAll()
 				// 「/admin」は、ADMINユーザだけアクセス可能にする
 				.antMatchers("/admin/**").hasRole(Role.ADMIN.name()).anyRequest().authenticated().and().formLogin()
@@ -59,14 +59,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		// UserDetailsServiceを使用して、DBからユーザを参照できるようにする
-		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+//		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 
-		// メモリ内認証
-//		auth.inMemoryAuthentication()
-//				// ユーザ名「admin」と「user」を用意
-//				// パスワードは両方とも「password」
-//				.withUser("admin").password(passwordEncoder().encode("password")).authorities("ROLE_ADMIN").and()
-//				.withUser("user").password(passwordEncoder().encode("password")).authorities("ROLE_USER");
+		// メモリ内認証(実装中はこっちの設定で進める)
+		auth.inMemoryAuthentication()
+				// ユーザ名「admin」と「user」を用意
+				// パスワードは両方とも「password」
+				.withUser("admin").password(passwordEncoder().encode("password")).authorities("ROLE_ADMIN").and()
+				.withUser("user").password(passwordEncoder().encode("password")).authorities("ROLE_USER");
 	}
 
 }

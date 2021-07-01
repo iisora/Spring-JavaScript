@@ -17,19 +17,19 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 public class LogAspect {
 
-	@Before("execution(* dev.itboot.rest.controller.ColleagueController.*(..))")
+	@Before("execution(* com.dev.personal.controller.ColleagueController.*(..))")
 	public void startLog(JoinPoint jp) {
 		log.info("{}: を開始します。", jp.getSignature());
 		System.out.println("****Method Start****👏:" + jp.getSignature());
 	}
 
-	@After("execution(* dev.itboot.rest.controller.ColleagueController.*(..))")
+	@After("execution(* com.dev.personal.controller.ColleagueController.*(..))")
 	public void endLog(JoinPoint jp) {
 		log.info("{}: を終了します。", jp.getSignature());
 		System.out.println("****Method End****👋:" + jp.getSignature());
 	}
 
-	@Around("execution(* dev.itboot.rest..*(..))")
+	@Around("execution(* com.dev.personal..*(..))")
 	public Object startAndEndLog(ProceedingJoinPoint pjp) throws Throwable {
 		log.info("{}: Around前処理", pjp.getSignature());
 		Object result = pjp.proceed();
@@ -38,11 +38,12 @@ public class LogAspect {
 		return result;
 	}
 
-	@AfterReturning(pointcut = "within(dev.itboot.rest.controller.*Controller)", returning = "result")
+	@AfterReturning(pointcut = "within(com.dev.personal.controller.*Controller)", returning = "result")
 	public void afterReturning(JoinPoint jp, Object result) {
 		log.info("{}: return = {}", jp.getSignature(), result);
 	}
 
+	// beanには、先頭小文字で登録されている
 	@AfterThrowing(pointcut = "bean(colleagueController)", throwing = "e")
 	public void afterThrowing(JoinPoint jp, Throwable e) {
 		log.error("{}: 処理中に例外が発生しました。: {}", jp.getSignature(), e);

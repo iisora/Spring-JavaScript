@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.dev.personal.model.User;
+import com.dev.personal.model.MyUser;
 import com.dev.personal.repository.UserRepository;
 import com.dev.personal.util.Role;
 
@@ -34,12 +34,12 @@ public class LoginController {
 	}
 
 	@GetMapping("/register")
-	public String register(@ModelAttribute("user") User user) {
+	public String register(@ModelAttribute("user") MyUser user) {
 		return "register";
 	}
 
 	@PostMapping("/register")
-	public String process(@Validated @ModelAttribute("user") User user, BindingResult result) {
+	public String process(@Validated @ModelAttribute("user") MyUser user, BindingResult result) {
 
 		if (result.hasErrors()) {
 			return "register";
