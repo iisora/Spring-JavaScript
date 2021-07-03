@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dev.personal.mapper.ColleagueMapper">
+
+<!--/* classpath以下のパッケージ構成を合わせる */-->
+
+	<select id="count" resultType="Long">
+		SELECT COUNT(*) FROM colleague;
+	</select>
+
+	<!-- CollectionやListが戻り値の場合は、中に含まれるオブジェクトを指定する  -->
+	<select id="selectAll" resultType="Colleague">
+		SELECT * FROM colleague
+	</select>
+	
+	<select id="selectByPrimaryKey" resultType="Colleague">
+		SELECT * FROM colleague 
+		WHERE id = #{id}
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO colleague(user_name, email) 
+		VALUES(#{userName}, #{email})
+	</insert>
+	
+	<update id="updateByPrimaryKey">
+		UPDATE colleague 
+		SET user_name = #{userName}, email = #{email}
+		WHERE id = #{id}
+	</update>
+	
+	<delete id="deleteByPrimaryKey">
+		DELETE FROM colleague
+		WHERE id = #{id}
+	</delete>
+
+</mapper>

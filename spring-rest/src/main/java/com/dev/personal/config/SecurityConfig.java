@@ -45,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				// ログイン時のURLを指定
 				.loginPage("/login")
 				// 認証後にリダイレクトする場所を指定
-				.defaultSuccessUrl("/").and()
+				.defaultSuccessUrl("/list").and()
 				// ログアウトの設定
 				.logout()
 				// ログアウト時のURLを指定
@@ -56,12 +56,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.rememberMe();
 	}
 
+	/**
+	 * 認証時に利用するデータソースを定義する設定メソッド
+	 * AuthenticationManagerBuilderは認証系の機能を持つ。
+	 * userDetailsServiceはフォームに入力されたユーザが使用可能か判断する。
+	 */
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		// UserDetailsServiceを使用して、DBからユーザを参照できるようにする
 //		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 
-		// メモリ内認証(実装中はこっちの設定で進める)
+		// メモリ内認証(インメモリ：実装中はこっちの設定で進める)
 		auth.inMemoryAuthentication()
 				// ユーザ名「admin」と「user」を用意
 				// パスワードは両方とも「password」

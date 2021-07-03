@@ -16,12 +16,23 @@ import com.dev.personal.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Spring Securityのユーザ検索用のサービスの実装クラス
+ * DataSourceの引数として指定することで認証にDBを利用できるようになる
+ */
 @RequiredArgsConstructor
 @Service
 public class UserDetailServiceImpl implements UserDetailsService {
 
 	private UserRepository repository;
 
+	
+    /**
+     * UserDetailsServiceインタフェースの実装メソッド
+     * フォームから取得したユーザ名でDBを検索し、合致するものが存在したとき、
+     * パスワード、権限情報と共にUserDetailsオブジェクトを生成
+     * コンフィグクラスで上入力値とDBから取得したパスワードと比較し、ログイン判定を行う
+     */
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 

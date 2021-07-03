@@ -45,6 +45,7 @@ public class LoginController {
 			return "register";
 		}
 
+		// rawDataのパスワードは渡すことができないので、暗号化
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 
 		if (user.isAdmin()) {

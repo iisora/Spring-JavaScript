@@ -1,5 +1,7 @@
 package com.dev.personal.controller;
 
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,9 +26,10 @@ public class ColleagueController {
 	private final ColleagueService service;
 
 	@GetMapping("/list")
-	public String getAllColleagues(Model model) {
+	public String getAllColleagues(Model model, @PageableDefault(size = 5) Pageable pageable) {
 //		model.addAttribute("page", mapper.selectAll());
-		model.addAttribute("page", service.selectAll());
+//		model.addAttribute("page", service.selectAll());
+		model.addAttribute("page", service.selectAll(pageable));
 		return "list";
 	}
 

@@ -4,6 +4,10 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.apache.ibatis.session.RowBounds;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.dev.personal.mapper.ColleagueMapper;
@@ -17,6 +21,18 @@ import lombok.RequiredArgsConstructor;
 public class ColleagueService {
 
 	private final ColleagueMapper mapper;
+
+	public Page<Colleague> selectAll(Pageable pageable) {
+		// RowBounds:MyBatis側のページ情報
+		// RowBoundsの引数にoffset(ページ位置)とlimit(１ページの表示件数）を指定する。
+		RowBounds rowBounds = new RowBounds((int) pageable.getOffset(), pageable.getPageSize());
+		List<Colleague> colleagues = mapper.selectAll(rowBounds);
+
+		Long total = mapper.count();
+		// 引数に内容、ページング情報、合計を指定する。
+		return new PageImpl<>(colleagues, pageable, total);
+
+	}
 
 	public List<Colleague> selectAll() {
 		return mapper.selectAll();

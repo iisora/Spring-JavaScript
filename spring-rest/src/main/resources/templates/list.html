@@ -10,7 +10,8 @@ layout:decorate="~{layout/layout}">
 	<div layout:fragment="content" class="container-fluid">
 		<h4>ユーザ一覧画面</h4>
 		
-		<table th:if="${page.size > 0}" class="table">
+		<!-- page.totalPages = 合計ページ数 -->
+		<table th:if="${page.totalPages > 0}" class="table">
 			<thead>
 				<tr>
 					<th>#</th>
@@ -46,8 +47,11 @@ layout:decorate="~{layout/layout}">
 					新規追加
 				</a>
 			</div>
-		</div>
 			
+			<!-- Pagenation  -->
+			<div th:replace="~{fragments/pagination :: pagination}">
+			</div>
+		</div>
 	</div>
 
 </body>
