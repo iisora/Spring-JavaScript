@@ -2,6 +2,14 @@
 Java(SpringBoot)でいろいろ開発する用。
 FWとJava自体の理解を深めることとシステムを構築することに慣れるのが目的。（ついでにjavascriptとSQLも)
 
+【SpringBoot+Vue.js+Dockerでサンプルを作成】
+構成：
+  フロントエンド：Vue.js
+  バックエンド：SpringBoot
+  
+ SpringBoot×Vue.jsでSPA & docker
+ https://qiita.com/fujita0830/items/71ae0278cf1236dbaf5a
+
 
 【SpringBootとVue.jsでECサイト】
 構成：
@@ -21,9 +29,6 @@ FWとJava自体の理解を深めることとシステムを構築すること�
  参考サイト
  Vue.jsとSpringBootでSPA作成
  https://www.slideshare.net/ssuser4d53ba/spring-boot-vuejsspa
- spring boot + vue + nginx realizes separation of front and back ends
- https://www.programmersought.com/article/30776117090/
-    
 
 
     
