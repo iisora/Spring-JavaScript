@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### 画面のリソースはVue側で自動生成する ###
+src/main/resources/static/
